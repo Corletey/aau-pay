@@ -1,3 +1,4 @@
+// src/pages/events/components/paymentForm.jsx
 import React, { useState } from 'react';
 
 const PaymentForm = () => {
@@ -24,9 +25,11 @@ const PaymentForm = () => {
     console.log('Form submitted:', formData);
   };
 
+  const inputClasses = "mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-[#393464] focus:ring focus:ring-[#393464] focus:ring-opacity-20 transition duration-200 ease-in-out p-2";
+
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-lg border border-yellow-300 mt-10">
-      <h2 className="text-3xl font-bold mb-6 text-center text-yellow-600">Register for Event</h2>
+    <div className="bg-white rounded-lg shadow-lg border border-[#393464] p-8">
+      <h2 className="text-3xl font-bold mb-6 text-center text-[#393464]">Register for Event</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -38,7 +41,7 @@ const PaymentForm = () => {
               value={formData.firstName}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+              className={inputClasses}
             />
           </div>
           <div>
@@ -50,10 +53,11 @@ const PaymentForm = () => {
               value={formData.lastName}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+              className={inputClasses}
             />
           </div>
         </div>
+
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
           <input
@@ -63,9 +67,10 @@ const PaymentForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+            className={inputClasses}
           />
         </div>
+
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
           <input
@@ -75,9 +80,10 @@ const PaymentForm = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+            className={inputClasses}
           />
         </div>
+
         <div>
           <label htmlFor="ticketType" className="block text-sm font-medium text-gray-700">Ticket Type</label>
           <select
@@ -86,13 +92,15 @@ const PaymentForm = () => {
             value={formData.ticketType}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+            className={inputClasses}
           >
             <option value="">Select a ticket type</option>
-            <option value="General Admission">General Admission - $20</option>
-            <option value="VIP">VIP - $50</option>
+            <option value="tier1">Tier 1 - $800</option>
+            <option value="tier2">Tier 2 - $1000</option>
+            <option value="tier3">Tier 3 - $1500</option>
           </select>
         </div>
+
         <div>
           <label htmlFor="quantity" className="block text-sm font-medium text-gray-700">Quantity</label>
           <input
@@ -103,9 +111,10 @@ const PaymentForm = () => {
             onChange={handleChange}
             min="1"
             required
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+            className={inputClasses}
           />
         </div>
+
         <div>
           <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">Card Number</label>
           <input
@@ -116,9 +125,10 @@ const PaymentForm = () => {
             onChange={handleChange}
             required
             placeholder="1234 5678 9012 3456"
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+            className={inputClasses}
           />
         </div>
+
         <div className="grid grid-cols-2 gap-6">
           <div>
             <label htmlFor="expiryDate" className="block text-sm font-medium text-gray-700">Expiry Date</label>
@@ -130,7 +140,7 @@ const PaymentForm = () => {
               onChange={handleChange}
               required
               placeholder="MM/YY"
-              className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+              className={inputClasses}
             />
           </div>
           <div>
@@ -143,10 +153,11 @@ const PaymentForm = () => {
               onChange={handleChange}
               required
               placeholder="123"
-              className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+              className={inputClasses}
             />
           </div>
         </div>
+
         <div>
           <label htmlFor="billingAddress" className="block text-sm font-medium text-gray-700">Billing Address</label>
           <textarea
@@ -156,13 +167,14 @@ const PaymentForm = () => {
             onChange={handleChange}
             required
             rows="3"
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 transition duration-200 ease-in-out p-2"
+            className={inputClasses}
           ></textarea>
         </div>
+
         <div className="text-right">
           <button
             type="submit"
-            className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg shadow hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 transition duration-150 ease-in-out"
+            className="px-6 py-3 bg-[#393464] text-white font-semibold rounded-lg shadow hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[#393464] focus:ring-opacity-50 transition duration-150 ease-in-out"
           >
             Complete Payment
           </button>

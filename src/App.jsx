@@ -1,7 +1,7 @@
+// src/App.jsx
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/landing/index.jsx";
-import Payment from "./pages/events/index.jsx";
-import MoreDetails from "./pages/events/components/eventDetails.jsx"; 
+import EventDetailsAndPayment from "./pages/events/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -9,13 +9,9 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/payment",
-    element: <Payment />,
-  },
-  {
-    path: "/event/:id", // Dynamic route for event details
-    element: <MoreDetails />, // Renders the MoreDetails component
-  },
+    path: "/event/:id",
+    element: <EventDetailsAndPayment />,
+  }
 ]);
 
 function App() {

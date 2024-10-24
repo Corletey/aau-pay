@@ -1,94 +1,64 @@
-import React, { useState } from 'react';
+// src/components/eventCard.jsx
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, DollarSign } from 'lucide-react';
 
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handlePaymentClick = () => {
-    if (event && event.id) {
-      navigate(`/payment`); // Navigate to payment page with event ID
-    } else {
-      console.error('Event ID is missing');
-    }
-  };
-
-  // If no event prop is passed, return null (avoiding rendering errors)
-  if (!event) {
-    return null;
-  }
+  
+  const formattedDate = new Date(event.date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
 
   return (
-    <motion.div
-      className="relative w-full h-[400px] rounded-xl overflow-hidden shadow-2xl"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+    <div 
+      onClick={() => navigate(`/event/${event.id}`)}
+      className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-100"
     >
-      {/* Event Flyer Image */}
-      <div
-        className="relative h-full object-cover overflow-hidden inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out"
-        style={{
-          backgroundImage: `url(${event.image})`,
-          transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-        }}
-      />
-
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black opacity-50" />
-
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-[#ffd700] opacity-80" />
-
-      {/* Content */}
-      <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
-        <div>
-          <h3 className="text-3xl font-bold mb-2 drop-shadow-lg">{event.name}</h3>
-          <div className="flex items-center mb-2">
-            <Calendar className="w-5 h-5 mr-2" />
-            <span>{new Date(event.date).toLocaleDateString()}</span>
-          </div>
-          <div className="flex items-center">
-            <MapPin className="w-5 h-5 mr-2" />
-            <span>{event.location}</span>
-          </div>
-        </div>
-
-        {/* Ticket Prices */}
-        <div>
-          <div className="mb-4">
-            <h4 className="text-xl font-semibold mb-2">Ticket Options</h4>
-            <div className="flex flex-wrap gap-2">
-              {event.prices.map((price, index) => (
-                <div
-                  key={index}
-                  className="bg-white bg-opacity-20 rounded-full px-4 py-1 backdrop-blur-sm"
-                >
-                  <span className="font-bold">${price}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Purchase Tickets Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
-            onClick={handlePaymentClick}
-          >
-            <div className="flex items-center justify-center">
-              <DollarSign className="w-5 h-5 mr-2" />
-              <span>Purchase Tickets</span>
-            </div>
-          </motion.button>
+      {/* Image Container */}
+      <div className="relative h-48 overflow-hidden">
+        <img 
+          src={event.image} 
+          alt={event.name} 
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#393464]/80 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 p-4">
+          <p className="text-white font-semibold">{formattedDate}</p>
         </div>
       </div>
-    </motion.div>
+
+      {/* Content Container */}
+      <div className="p-5">
+        <h3 className="text-xl font-bold text-[#393464] mb-2 group-hover:text-[#4a4580] transition-colors">
+          {event.name}
+        </h3>
+        
+        <div className="flex items-center text-gray-600 mb-4">
+          <svg className="w-5 h-5 mr-2 text-[#393464]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          {event.location}
+        </div>
+
+        {/* Price Tiers */}
+        <div className="space-y-2">
+          <p className="text-sm font-semibold text-[#393464]">Available Tickets:</p>
+          <div className="grid grid-cols-3 gap-2">
+            {event.prices.map((price, index) => (
+              <div 
+                key={index}
+                className="bg-[#f8f8ff] rounded-lg p-2 text-center transition-colors hover:bg-[#393464]/5"
+              >
+                <p className="text-xs text-[#393464]/80 mb-1">Tier {index + 1}</p>
+                <p className="text-sm font-bold text-[#393464]">${price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+//src/pages/landing/components/events.jsx
 import React, { useState } from 'react';
 import EventCard from '../../../components/eventCard.jsx';
 import K from '../../../constants/index.jsx';
