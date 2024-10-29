@@ -56,10 +56,11 @@ const RootLayout = () => {
       {loading ? (
         <RoundPreloader />
       ) : (
-        <Outlet />
+        <>
+          <Outlet />
+          <Footer /> {/* Show Footer only when not loading */}
+        </>
       )}
-
-      <Footer />
 
       {/* Scroll to Top Button */}
       {showScroll && (
