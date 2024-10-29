@@ -12,30 +12,34 @@ const Navbar = () => {
   const languages = ['EN', 'FR', 'PT', 'AR'];
 
   return (
-    <nav className="bg-[#393464] text-white">
+    <nav className="bg-[#393464] text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <img src={aauLogoImg} alt="AAU Logo" className='h-14 w-auto'/>
+              <img src={aauLogoImg} alt="AAU Logo" className="h-16 w-auto" />
             </div>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <a href="/" className="hover:bg-[#ffd700] px-3 py-2 rounded-md text-base font-bold">Home</a>
-                <a href="/terms-and-conditions" className="hover:bg-[#ffd700] px-3 py-2 rounded-md text-base font-bold">Terms of Use</a>
+              <div className="ml-10 flex items-baseline space-x-6">
+                <a href="/" className="hover:bg-[#ffd700] hover:text-[#393464] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
+                  Home
+                </a>
+                <a href="/terms-and-conditions" className="hover:bg-[#ffd700] hover:text-[#393464] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
+                  Terms of Use
+                </a>
               </div>
             </div>
           </div>
           <div className="hidden md:block relative">
             <button
-              className="flex items-center bg-[#5bc0de] hover:bg-[#4cabc7] px-3 py-2 rounded-md text-base font-bold transition duration-150 ease-in-out"
+              className="flex items-center bg-[#5bc0de] hover:bg-[#4cabc7] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              <Globe className="h-5 w-5 mr-1 text-[#ffd700]" />
+              <Globe className="h-5 w-5 mr-2 text-[#ffd700]" />
               {language}
             </button>
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-32 bg-white text-black rounded-md shadow-lg z-20">
+              <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md shadow-lg z-20">
                 {languages.map((lang) => (
                   <button
                     key={lang}
@@ -43,7 +47,7 @@ const Navbar = () => {
                       setLanguage(lang);
                       setDropdownOpen(false);
                     }}
-                    className={`block w-full px-4 py-2 text-left hover:bg-[#f3bd00] ${
+                    className={`block w-full px-4 py-3 text-left hover:bg-[#f3bd00] transition duration-200 ease-in-out ${
                       language === lang ? 'bg-[#5bc0de] text-white' : ''
                     }`}
                   >
@@ -72,20 +76,24 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="/" className="hover:bg-[#4a4580] block px-3 py-2 rounded-md text-base font-bold">Home</a>
-            <a href="/terms-and-conditions" className="hover:bg-[#4a4580] block px-3 py-2 rounded-md text-base font-bold">Terms of Use</a>
+            <a href="/" className="hover:bg-[#4a4580] block px-3 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
+              Home
+            </a>
+            <a href="/terms-and-conditions" className="hover:bg-[#4a4580] block px-3 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
+              Terms of Use
+            </a>
           </div>
           <div className="pt-4 pb-3 border-t border-[#4a4580]">
             <div className="flex items-center px-5 relative">
               <button
-                className="flex items-center bg-[#5bc0de] hover:bg-[#4cabc7] px-3 py-2 rounded-md text-base font-bold transition duration-150 ease-in-out"
+                className="flex items-center bg-[#5bc0de] hover:bg-[#4cabc7] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                <Globe className="h-5 w-5 mr-1 text-[#ffd700]" />
+                <Globe className="h-5 w-5 mr-2 text-[#ffd700]" />
                 {language}
               </button>
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-32 bg-white text-black rounded-md shadow-lg z-20">
+                <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md shadow-lg z-20">
                   {languages.map((lang) => (
                     <button
                       key={lang}
@@ -93,7 +101,7 @@ const Navbar = () => {
                         setLanguage(lang);
                         setDropdownOpen(false);
                       }}
-                      className={`block w-full px-4 py-2 text-left hover:bg-[#f3bd00] ${
+                      className={`block w-full px-4 py-3 text-left hover:bg-[#f3bd00] transition duration-200 ease-in-out ${
                         language === lang ? 'bg-[#5bc0de] text-white' : ''
                       }`}
                     >
