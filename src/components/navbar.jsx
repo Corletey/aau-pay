@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import aauLogoImg from '../assets/images/logo.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,12 +22,12 @@ const Navbar = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-6">
-                <a href="/" className="hover:bg-[#ffd700] hover:text-[#393464] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
+                <Link to="/" className="hover:bg-[#ffd700] hover:text-[#393464] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
                   Home
-                </a>
-                <a href="/terms-and-conditions" className="hover:bg-[#ffd700] hover:text-[#393464] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
+                </Link>
+                <Link to="/terms-and-conditions" className="hover:bg-[#ffd700] hover:text-[#393464] px-4 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
                   Terms of Use
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -79,9 +80,9 @@ const Navbar = () => {
             <a href="/" className="hover:bg-[#4a4580] block px-3 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
               Home
             </a>
-            <a href="/terms-and-conditions" className="hover:bg-[#4a4580] block px-3 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
+            <Link to="/terms-and-conditions" className="hover:bg-[#4a4580] block px-3 py-3 rounded-md text-base font-bold transition duration-200 ease-in-out">
               Terms of Use
-            </a>
+            </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-[#4a4580]">
             <div className="flex items-center px-5 relative">
