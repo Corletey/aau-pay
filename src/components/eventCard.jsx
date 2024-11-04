@@ -1,5 +1,6 @@
 // src/components/eventCard.jsx
 import { useNavigate } from 'react-router-dom';
+import K from '../constants';
 
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const EventCard = ({ event }) => {
           <p className="text-white font-semibold">{formattedDate}</p>
         </div>
       </div>
-
       {/* Content Container */}
       <div className="p-5">
         <h3 className="text-xl font-bold text-[#393464] mb-2 group-hover:text-[#4a4580] transition-colors">
@@ -41,18 +41,17 @@ const EventCard = ({ event }) => {
           </svg>
           {event.location}
         </div>
-
         {/* Price Tiers */}
         <div className="space-y-2">
           <p className="text-sm font-semibold text-[#393464]">Available Tickets:</p>
-          <div className="grid grid-cols-3 gap-2">
-            {event.prices.map((price, index) => (
+          <div className={`grid gap-2 ${K.Eventdata[0].rates.length === 2 ? 'grid-cols-2 justify-center' : 'grid-cols-3'}`}>
+            {K.Eventdata[0].rates.map((price, index) => (
               <div 
                 key={index}
                 className="bg-[#f8f8ff] rounded-lg p-2 text-center transition-colors hover:bg-[#393464]/5"
               >
                 <p className="text-xs text-[#393464]/80 mb-1">Tier {index + 1}</p>
-                <p className="text-sm font-bold text-[#393464]">${price}</p>
+                <p className="text-sm font-bold text-[#393464]">${price.value}</p>
               </div>
             ))}
           </div>

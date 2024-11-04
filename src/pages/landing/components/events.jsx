@@ -7,8 +7,9 @@ const EventsDisplay = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Filter events based on search term
-  const filteredEvents = K.eventsData.filter(event =>
-    event.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredEvents = K.Eventdata.filter(event =>
+    event.title.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    event.description.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
     event.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -20,7 +21,7 @@ const EventsDisplay = () => {
       <div className="mb-6">
         <input
           type="text"
-          placeholder="Search events by name or location..."
+          placeholder="Search events by name, description, or location..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -31,7 +32,17 @@ const EventsDisplay = () => {
       {filteredEvents.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredEvents.map(event => (
-            <EventCard key={event.id} event={event} />
+            <EventCard
+              key={event.id}
+              event={{
+                id: event.id,
+                name: event.title.en,
+                image: event.image,
+                location: event.location,
+                date: new Date(),
+                prices: event.rates.map(rate => parseInt(rate.value))
+              }}
+            />
           ))}
         </div>
       ) : (
