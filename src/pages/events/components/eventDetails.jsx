@@ -83,7 +83,10 @@ const MoreDetails = () => {
             {/* Description */}
             <div className="mb-8">
               <h2 className="text-xl font-bold text-[#393464] mb-4">About the Event</h2>
-              <p className="text-gray-600 leading-relaxed">{event.description.en}</p>
+              <div 
+                className="text-gray-600 leading-relaxed" 
+                dangerouslySetInnerHTML={{ __html: event.description.en }} 
+              />
             </div>
 
             {/* Ticket Tiers */}
@@ -97,12 +100,6 @@ const MoreDetails = () => {
                   >
                     <p className="text-lg font-semibold text-[#393464] mb-1">Tier {index + 1}</p>
                     <p className="text-3xl font-bold text-[#393464] mb-4">${rate.value}</p>
-                    {/* <button
-                      onClick={() => navigate('/payment')}
-                      className="w-full px-4 py-2 bg-[#393464] text-white rounded-lg hover:bg-[#4a4580] transition-colors"
-                    >
-                      Select
-                    </button> */}
                   </div>
                 ))}
               </div>
