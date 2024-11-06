@@ -65,9 +65,36 @@ const MoreDetails = () => {
           </div>
 
           <div className="p-8">
-            {/* Event Details Grid */}
-            <div className="flex flex-wrap gap-6 mb-8">
-              <div className="flex items-center">
+            {/* Event Details */}
+            <div className="flex flex-col gap-6 mb-8">
+              {/* Date and Ticket Options for Mobile View */}
+              <div className="sm:hidden flex flex-col items-start gap-3">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 rounded-full bg-[#393464]/10 flex items-center justify-center mr-3">
+                    <svg className="w-6 h-6 text-[#393464]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Date</p>
+                    <p className="font-semibold text-[#393464]">{formattedDate}</p>
+                  </div>
+                </div>
+                {/* Ticket Options */}
+                <div className="flex gap-2 flex-wrap">
+                  {event.rates.map((rate, index) => (
+                    <div 
+                      key={index}
+                      className="bg-[#f8f8ff] rounded-lg px-3 py-1 text-center text-sm font-semibold text-[#393464] border border-[#393464]/10"
+                    >
+                      Tier {index + 1}: ${rate.value}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Date for Desktop View */}
+              <div className="hidden sm:flex items-center">
                 <div className="w-12 h-12 rounded-full bg-[#393464]/10 flex items-center justify-center mr-3">
                   <svg className="w-6 h-6 text-[#393464]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -78,21 +105,9 @@ const MoreDetails = () => {
                   <p className="font-semibold text-[#393464]">{formattedDate}</p>
                 </div>
               </div>
-            </div>
 
-            {/* Description */}
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-[#393464] mb-4">About the Event</h2>
-              <div 
-                className="text-gray-600 leading-relaxed" 
-                dangerouslySetInnerHTML={{ __html: event.description.en }} 
-              />
-            </div>
-
-            {/* Ticket Tiers */}
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-[#393464] mb-4">Ticket Options</h2>
-              <div className={`grid grid-cols-1 md:grid-cols-${event.rates.length === 2 ? 2 : 3} gap-4`}>
+              {/* Ticket Options for Desktop View */}
+              <div className="hidden sm:grid grid-cols-1 md:grid-cols-3 gap-4">
                 {event.rates.map((rate, index) => (
                   <div 
                     key={index}
@@ -103,6 +118,15 @@ const MoreDetails = () => {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Description */}
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-[#393464] mb-4">About the Event</h2>
+              <div 
+                className="text-gray-600 leading-relaxed" 
+                dangerouslySetInnerHTML={{ __html: event.description.en }} 
+              />
             </div>
           </div>
         </div>
