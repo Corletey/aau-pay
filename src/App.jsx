@@ -4,6 +4,7 @@ import RootLayout from "./layouts/rootLayout.jsx";
 import Home from "./pages/landing/index.jsx";
 import EventDetailsAndPayment from "./pages/events/index.jsx";
 import TermsAndConditions from "./pages/terms/components/t&c.jsx";
+import PaymentSuccess from "./pages/success/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         path: "/terms-and-conditions",
         element: <TermsAndConditions />,
       },
+      {
+        path: "/success",
+        element: <PaymentSuccess />,
+      }
     ]
   }
 ]);
@@ -31,3 +36,4 @@ function App() {
 }
 
 export default App;
+

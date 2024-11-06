@@ -1,7 +1,9 @@
-// src/pages/events/components/paymentForm.jsx
+//src/pages/events/components/paymentForm.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,6 +25,7 @@ const PaymentForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    navigate('/success');
   };
 
   const inputClasses = "mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-[#393464] focus:ring focus:ring-[#393464] focus:ring-opacity-20 transition duration-200 ease-in-out p-2";
