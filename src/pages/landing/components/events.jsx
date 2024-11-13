@@ -1,16 +1,15 @@
-//src/pages/landing/components/events.jsx
 import React, { useState } from 'react';
 import EventCard from '../../../components/eventCard.jsx';
 import K from '../../../constants/index.jsx';
 
 const EventsDisplay = () => {
   const [searchTerm, setSearchTerm] = useState('');
-
+  
   // Filter events based on search term
   const filteredEvents = K.Eventdata.filter(event =>
     event.title.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
     event.description.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    event.location.toLowerCase().includes(searchTerm.toLowerCase())
+    (event.location || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -35,12 +34,10 @@ const EventsDisplay = () => {
             <EventCard
               key={event.id}
               event={{
-                id: event.id,
+                ...event,
                 name: event.title.en,
-                image: event.image,
-                location: event.location,
-                date: new Date(),
-                prices: event.rates.map(rate => parseInt(rate.value))
+                rates: event.rates,
+                date: event.createdAt || new Date().toISOString(), // Use createdAt or current date as fallback
               }}
             />
           ))}
